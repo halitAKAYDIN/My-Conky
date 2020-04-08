@@ -1,0 +1,83 @@
+background yes
+double_buffer yes
+
+alignment top_right
+
+border_width 1
+cpu_avg_samples 2
+default_color white
+default_outline_color white
+default_shade_color white
+draw_borders no
+draw_graph_borders yes
+draw_outline no
+draw_shades no
+
+gap_x 0
+gap_y 40
+net_avg_samples 2
+no_buffers yes
+out_to_console no
+out_to_stderr no
+extra_newline no
+
+own_window yes
+own_window_type normal
+own_window_transparent yes
+own_window_colour 000000
+own_window_argb_visual yes
+own_window_argb_value 0
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+
+minimum_size 300 500
+stippled_borders 0
+update_interval 2.0
+uppercase no
+use_spacer none
+
+show_graph_scale no
+show_graph_range no
+
+use_xft yes
+xftalpha 0.1
+xftfont Droid Sans:size=10
+color0 white
+color1 EAEAEA
+color2 FFA300
+color3 grey
+
+TEXT
+${color2}RAM   ${color0} ${mem}   ${color3}${membar 10}
+
+#####
+${color2}SWAP ${color0} ${swap}   ${color3}${swapbar 10}
+
+#####
+${color2}DISKS ${color0} ${fs_used_perc /}%        ${color3}${fs_bar /}
+
+######
+${color2}CPU    ${color0} ${cpu cpu0}%          ${color3}${cpubar cpu0 10}
+
+${cpugraph cpu1 50,150 FFFFFF FFA300 -t}${cpugraph cpu2 50,150 FFFFFF FFA300 -t}${voffset -17}
+${cpugraph cpu3 50,150 FFFFFF FFA300 -t}${cpugraph cpu4 50,150 FFFFFF FFA300 -t}
+######
+#######
+${if_existing /proc/net/route wlan0}
+${color2}Net Down:${color} ${downspeedf wlan0} KiB/s ${goto 200}${color2}Net Up:${color} ${upspeedf wlan0}
+${color}${downspeedgraph wlan0 60,190 FFFFFF FFA300 -t}${color} ${goto 200}${upspeedgraph wlan0 60,100 FFFFFF FFA300 -t}
+${color2}Local Wifi Adress${color0}${alignr}${addrs wlan0}
+##########
+${else}${if_existing /proc/net/route tun0}
+${if_existing /proc/net/route tun0}
+${color2}Net Down:${color} ${downspeedf wlan0} KiB/s ${goto 200}${color2}Net Up:${color} ${upspeedf wlan0}
+${color}${downspeedgraph wlan0 60,190 FFFFFF FFA300 -t}${color} ${goto 200}${upspeedgraph wlan0 60,100 FFFFFF FFA300 -t}
+${color2}Local Vpn Adress${color0}${alignr}${addrs tun0}
+#########
+${endif}${else}${if_existing /proc/net/route eth0}
+${if_existing /proc/net/route eth0}
+$${color2}Net Down:${color} ${downspeedf wlan0} KiB/s ${goto 200}${color2}Net Up:${color} ${upspeedf wlan0}
+${color}${downspeedgraph wlan0 60,190 FFFFFF FFA300 -t}${color} ${goto 200}${upspeedgraph wlan0 60,100 FFFFFF FFA300 -t}
+${color2}Local Lan Adress${color0}${alignr}${addrs eth0}
+${endif}${else}
+########
+${color2}Public Adress${color0}${alignr}${execi 3600 wget -q -O /dev/stdout http://checkip.dyndns.org/ | cut -d : -f 2- | cut -d \< -f -1}

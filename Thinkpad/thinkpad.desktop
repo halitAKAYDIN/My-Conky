@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Exec=sh "/home/blackman/.conky/Thinkpad/startup.sh"
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name[en_IN]=Thinkpad
+Name=Thinkpad
+Comment[en_IN]=
+Comment=
