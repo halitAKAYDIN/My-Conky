@@ -10,6 +10,6 @@ cp -RT My-Conky/ ~/.conky/
 
 cp ~/.conky/Thinkpad/thinkpad.desktop ~/.config/autostart/
 
-run command conky -q -c ~/.conky/Thinkpad/thinkpad-t440.conkyrc &> /dev/null
+conky -q -c ~/.conky/Thinkpad/thinkpad-t440.conkyrc &> /dev/null
 
 <img src="https://raw.githubusercontent.com/halitAKAYDIN/My-Conky/master/Thinkpad/screen.png"> 
