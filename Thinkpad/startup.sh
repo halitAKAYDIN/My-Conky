@@ -1,1 +1,1 @@
-conky -q -c ~/.conky/Thinkpad/thinkpad-t440.conkyrc &> /dev/null
+conky -q -c ~/.conky/Thinkpad/thinkpad.conkyrc &> /dev/null
