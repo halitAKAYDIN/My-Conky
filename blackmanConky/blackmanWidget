@@ -1,7 +1,7 @@
 background yes
 double_buffer yes
 
-alignment top_left
+alignment top_right
 
 border_width 1
 cpu_avg_samples 2
@@ -14,7 +14,7 @@ draw_outline no
 draw_shades no
 
 gap_x 0
-gap_y 40
+gap_y 50
 net_avg_samples 2
 no_buffers yes
 out_to_console no
