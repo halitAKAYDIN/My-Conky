@@ -13,7 +13,7 @@ draw_graph_borders yes
 draw_outline no
 draw_shades no
 
-gap_x 0
+gap_x 20
 gap_y 50
 net_avg_samples 2
 no_buffers yes
@@ -69,15 +69,27 @@ ${color2}Local Wifi Adress${color0}${alignr}${addrs wlan0}
 ##########
 ${else}${if_existing /proc/net/route tun0}
 ${if_existing /proc/net/route tun0}
-${color2}Net Down:${color} ${downspeedf tun0} KiB/s ${goto 200}${color2}Net Up:${color} ${upspeedf tun0}
+${color2}Net Down:${color} ${downspeedf wlan0} KiB/s ${goto 200}${color2}Net Up:${color} ${upspeedf tun0}
 ${color}${downspeedgraph tun0 60,190 FFFFFF FF0000 -t}${color} ${goto 200}${upspeedgraph tun0 60,100 FFFFFF FF0000 -t}
 ${color2}Local Vpn Adress${color0}${alignr}${addrs tun0}
+##########
+${else}${if_existing /proc/net/route tun1}
+${if_existing /proc/net/route tun1}
+${color2}Net Down:${color} ${downspeedf tun1} KiB/s ${goto 200}${color2}Net Up:${color} ${upspeedf tun1}
+${color}${downspeedgraph tun1 60,190 FFFFFF FF0000 -t}${color} ${goto 200}${upspeedgraph tun1 60,100 FFFFFF FF0000 -t}
+${color2}Local Vpn Adress${color0}${alignr}${addrs tun1}
 #########
-${endif}${else}${if_existing /proc/net/route eth0}
+${else}${if_existing /proc/net/route eth0}
 ${if_existing /proc/net/route eth0}
-$${color2}Net Down:${color} ${downspeedf eth0} KiB/s ${goto 200}${color2}Net Up:${color} ${upspeedf eth0}
+${color2}Net Down:${color} ${downspeedf eth0} KiB/s ${goto 200}${color2}Net Up:${color} ${upspeedf eth0}
 ${color}${downspeedgraph eth0 60,190 FFFFFF FF0000 -t}${color} ${goto 200}${upspeedgraph eth0 60,100 FFFFFF FF0000 -t}
 ${color2}Local Lan Adress${color0}${alignr}${addrs eth0}
+########
+${endif}${else}${if_existing /proc/net/route eth1}
+${if_existing /proc/net/route eth1}
+${color2}Net Down:${color} ${downspeedf eth1} KiB/s ${goto 200}${color2}Net Up:${color} ${upspeedf eth1}
+${color}${downspeedgraph eth1 60,190 FFFFFF FF0000 -t}${color} ${goto 200}${upspeedgraph eth1 60,100 FFFFFF FF0000 -t}
+${color2}Local Lan Adress${color0}${alignr}${addrs eth1}
 ${endif}${else}
 ########
 ${color2}Public Adress${color0}${alignr}${execi 3600 wget -q -O /dev/stdout http://checkip.dyndns.org/ | cut -d : -f 2- | cut -d \< -f -1}
