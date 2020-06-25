@@ -53,10 +53,10 @@ ${color2}RAM   ${color0} ${mem}   ${color3}${membar 10}
 ${color2}SWAP ${color0} ${swap}   ${color3}${swapbar 10}
 
 #####
-${color2}DISKS ${color0} ${fs_used_perc /}%        ${color3}${fs_bar /}
+${color2}DISKS ${color0} ${fs_used_perc /}%         ${color3}${fs_bar /}
 
 ######
-${color2}CPU    ${color0} ${cpu cpu0}%          ${color3}${cpubar cpu0 10}
+${color2}CPU    ${color0} ${cpu cpu0}%         ${color3}${cpubar cpu0 10}
 
 ${cpugraph cpu1 50,150 FFFFFF FF0000 -t}${cpugraph cpu2 50,150 FFFFFF FF0000 -t}${voffset -17}
 ${cpugraph cpu3 50,150 FFFFFF FF0000 -t}${cpugraph cpu4 50,150 FFFFFF FF0000 -t}
